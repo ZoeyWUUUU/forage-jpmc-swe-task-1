@@ -21,6 +21,7 @@
 import json
 import random
 import urllib.request
+import statistics
 
 # Server API URLs
 QUERY = "http://localhost:8080/query?id={}"
@@ -35,7 +36,7 @@ def getDataPoint(quote):
     stock = quote['stock']
     bid_price = float(quote['top_bid']['price'])
     ask_price = float(quote['top_ask']['price'])
-    price = bid_price
+    price = statistics.mean(bid_price, ask_price)
     return stock, bid_price, ask_price, price
 
 
