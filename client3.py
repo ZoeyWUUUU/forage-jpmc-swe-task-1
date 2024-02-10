@@ -52,6 +52,8 @@ if __name__ == "__main__":
     # Query the price once every N seconds.
     for _ in iter(range(N)):
         quotes = json.loads(urllib.request.urlopen(QUERY.format(random.random())).read())
+        # testing #
+        print(quotes)
 
         """ ----------- Update to get the ratio --------------- """
         stock_price_dic = {}
@@ -61,4 +63,4 @@ if __name__ == "__main__":
             print("Quoted %s at (bid:%s, ask:%s, price:%s)" % (stock, bid_price, ask_price, price))
 
 
-        print("Ratio %s" % getRatio(stock_price_dic.get(quotes[0][0]), stock_price_dic.get(quotes[1][0])))
+        print("Ratio %s" % getRatio(stock_price_dic.get(quotes[0].get('stock')), stock_price_dic.get(quotes[1].get('stock'))))
